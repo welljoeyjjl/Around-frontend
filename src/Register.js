@@ -68,7 +68,7 @@ class RegistrationForm extends React.Component {
 
 
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form className="register" onSubmit={this.handleSubmit}>
                 <Form.Item
                     {...formItemLayout}
                     label="Username"
