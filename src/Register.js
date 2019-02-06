@@ -1,6 +1,5 @@
 import React from 'react';
-import {
-    Form, Input, Button} from 'antd';
+import { Form, Input, Button, message } from 'antd';
 
 class RegistrationForm extends React.Component {
     state = {
@@ -13,6 +12,27 @@ class RegistrationForm extends React.Component {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
+                // send request
+                fetch('https://around-75015.appspot.com/api/v1/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username: values.username,
+                        password: values.password,
+                    }),
+                }).then((response) => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error(response.statusText);
+                })
+                    .then((data) => {
+                        console.log(data);
+                        message.success('Registration Succeed!');
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                        message.error('Registration Failed.');
+                    });
             }
         });
     }
@@ -38,7 +58,6 @@ class RegistrationForm extends React.Component {
         }
         callback();
     }
-
 
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -66,15 +85,14 @@ class RegistrationForm extends React.Component {
             },
         };
 
-
         return (
-            <Form className="register" onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} className="register">
                 <Form.Item
                     {...formItemLayout}
                     label="Username"
                 >
                     {getFieldDecorator('username', {
-                        rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+                        rules: [{ required: true, message: 'Please input your username!' }],
                     })(
                         <Input />
                     )}
@@ -107,8 +125,6 @@ class RegistrationForm extends React.Component {
                         <Input type="password" onBlur={this.handleConfirmBlur} />
                     )}
                 </Form.Item>
-
-
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">Register</Button>
                 </Form.Item>
