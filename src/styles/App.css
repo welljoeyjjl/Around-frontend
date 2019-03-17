@@ -5,25 +5,25 @@
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 50px;
+  float: left;
 }
 
 .App-header {
   background-color: #282c34;
-  display: flex;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
   color: white;
   height: 50px;
 }
 
-.App-link {
+.App-title {
+  font-size: 20px;
+  font-weight: 600;
   color: #61dafb;
+  float: left;
+  padding-top: 10px;
 }
 
-.App-title {
+.App-link {
   color: #61dafb;
-  font-size: 25px;
-  font-weight: 600;
 }
 
 @keyframes App-logo-spin {
