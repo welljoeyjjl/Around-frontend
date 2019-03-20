@@ -2,7 +2,7 @@
   "name": "around-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://welljoeyjjl.github.io/Around-frontend",
+  "homepage": "https://welljoeyjjl.github.io/Around-frontend/",
   "dependencies": {
     "antd": "^3.13.0",
     "gh-pages": "^2.0.1",
